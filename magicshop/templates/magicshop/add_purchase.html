@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block content %}
+    <h2>Enter thou new purchasement</h2>
+    <form method="post">
+    <div>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>
+        <label for="potion_item">Potion item:</label>
+        <select name="potion_item" id="potion_item" required>
+            <option value selected>-----</option>
+        {% for potion_item in potion_items %}
+            <option value={{ potion_item.id }}>{{ potion_item.title }}</option>
+        {% endfor %}
+        </select>
+    </p>
+    <input type="submit" value="Submit"/>
+    </div>
+    </form>
+{% endblock %}

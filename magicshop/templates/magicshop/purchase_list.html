@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block head %}
+{% endblock %}
+{% block content %}
+    <h2>Purchasements</h2>
+    <button class="potion-button"><a href="{% url 'add_purchase' %}">Record Thee New Purchasement</a></button>
+    <hr/>
+    <table class="inventory-table">
+        <thead>
+            <tr>
+                <th>Magic Potion</th>
+                <th>Price</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for purchase in object_list %}
+            <tr>
+                <td>{{ purchase.potion_item.title }} ({{ purchase.potion_item.size }})</td>
+                <td class="price">Gold Coins {{ purchase.potion_item.price|stringformat:".2f" }}</td>
+                <td>{{ purchase.timestamp }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

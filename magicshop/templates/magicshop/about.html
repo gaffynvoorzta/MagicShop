@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block title %}Magic Potion Shop{% endblock %}
+{% block content %}
+<div>
+    <h2>All About 'Ye Magic Potion Shoppe'</h2>
+    <br>
+    <span class="about">
+    <p>
+        Welcome ye traveller to my humble 'Ye Magic Potion Shoppe' remote portal.
+        <br><br>
+        Portal Permits Potion Perusal only.<br>
+        --------------------------------------<br>
+        Please be ye aware that potion purchasements cannot be transacted via this portal.<br>
+        What you think I'm gonna send 'Resurrection Potions' and the like through the Post!<br><br>
+        If ye really wants... ye can come find...<br>
+        down near the docks, down the alleyway by "The Flaming Banshee" tavern.<br>
+        If the shop isn't there, give it a few hours and it should reappear (again)! 
+    </p>
+    <hr/>
+    <p class="restricted" style="text-align: center">
+        **** Ye Legals, Disclaimers & Stuffe ****<br><br>
+        ALWAYS READ the instructions FULLY 'pon ye vial / bottle<br>
+        before imbibing / administering and ALWAYS STORE in a safe place.<br>
+        'Ye Magic Potion Shoppe' cannot be held responsible for any<br>
+        accidental zombifications, transformations, manifestations and<br>
+        somesuch through misuse of our productes.<br>
+        <br>Refundes be ye not available without ye proofe of purchasement<br>
+        and yon very good reason!<br>
+    </p>
+    </span>
+    <br>
+    <hr/>
+    <p style="text-align: center">Ye Customer Testimonials and Accounte of Purchasement Satisfaction</p>
+    <span class="reviews">
+        <p style="font-style:italic">"{{ review.review}}"</p>
+        <p>{{ review.reviewer }}</p>
+        <p style="color:yellow">Pentacle Rating:  {{ review.pentacles }}</p>
+    </span>
+</div>
+{% endblock %}

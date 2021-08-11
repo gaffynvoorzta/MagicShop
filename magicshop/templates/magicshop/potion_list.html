@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block title %}Magic Potion Shop{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+    <h2>Magic Potions</h2>
+    <button class="potion-button"><a href="{% url 'add_potion_item' %}">Add Ye New Potion to Magic Potions</a></button>
+    <button class="potion-button"><a href="{% url 'add_recipe_requirement' %}">Add Ye Recipe Requirement for an Existing Magic Potion</a></button>
+    <hr/>
+    <ul class="potion-items">
+    {% for potion_item in object_list %}
+        <li>
+            <div class="potion-item-header">
+                <div class="potion-item-title">{{ potion_item.title }}</div>
+                <div class="potion-item-price">Gold Coins {{ potion_item.price|stringformat:".2f" }}</div>
+                <div>
+                    <button class="potion-button"><a href="{% url 'update_potion_item' potion_item.id %}"><span style="font-size: 0.6em">Edit</span></a></button>
+                    <button class="potion-button"><a href="{% url 'delete_potion_item' potion_item.id %}"><span style="font-size: 0.6em">Delete</span></a></button>
+                </div>
+            </div>
+            <div>Size :  {{ potion_item.size }}</div>
+            <h4>Ye Ingredients</h4>
+            <br>
+            <table class="inventory-table">
+                <thead>
+                    <tr>
+                        <th>Qty</th>
+                        <th>Units</th>
+                        <th>Name</th>
+                        <th>Cost</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for recipe_requirement in potion_item.reciperequirement_set.all %}
+                <tr>
+                    <td>{{ recipe_requirement.quantity }}</td>
+                    <td>{{ recipe_requirement.ingredient.unit }}</td>
+                    <td>{{ recipe_requirement.ingredient.name }}</td>
+                    <td>{{ recipe_requirement.req_cost }}</td>
+                    <td><a href="{% url 'update_recipe_requirement' recipe_requirement.id%}">Edit</a></td>
+                    <td><a href="{% url 'delete_recipe_requirement' recipe_requirement.id%}">Delete</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% for key, value in total_dict.items %}
+            {% if key == potion_item.id %}
+            <p>Total cost in ingredients :  {{ value.total_cost }}  (gold)</p>
+            <p>Profit* :  {{ value.profit_cost }}  (gold)</p>
+            {% endif %}
+            {% endfor %}
+            <p style="font-size: 0.7em">
+                * (based on ingredients alone. This excludes preparation time, incantations / rites etc..., Magik council regs., sourcing ingredients from graverobbers, adventurers and various cultists / diabolists.)</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

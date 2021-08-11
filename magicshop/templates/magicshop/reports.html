@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block head %}
+{% endblock %}
+{% block content %}
+    <h2>Ye Potion Purchasements</h2>
+    <table class="inventory-table">
+        <thead>
+            <tr>
+                <th>Magic Potion</th>
+                <th>Price</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for purchase in purchases %}
+            <tr>
+                <td>{{ purchase.potion_item.title }}</td>
+                <td class="price">Gold Coins {{ purchase.potion_item.price|stringformat:".2f" }}</td>
+                <td>{{ purchase.timestamp }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <hr/>
+    <h2>Totals</h2>
+    <div style="color: blue;">Total Revenue: Gold Coins {{ revenue|stringformat:".2f" }}</div>
+    <div style="color: red;">Total Cost: Gold Coins {{ total_cost|stringformat:".2f" }}</div>
+    <div style="color: yellow;">Total Profit: Gold Coins {{ profit|stringformat:".2f" }}</div>
+{% endblock %}

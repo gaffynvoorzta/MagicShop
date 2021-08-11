@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block title %}Magic Potion Shop{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+    <h2>Ingredients</h2>
+    <button class="potion-button"><a href="{% url 'add_ingredient' %} ">Add Ye New Ingredient / Cantrip to Inventory</a></button>
+    <hr/>
+    <table class="inventory-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Unit Price</th>
+                <th>Restricted</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ingredient in object_list %}
+            <tr>
+                <td>
+                    <a href="{% url 'update_ingredient' ingredient.id %}">{{ ingredient.name }}</a>
+                </td>
+                <td>{{ ingredient.quantity }}</td>
+                <td>{{ ingredient.unit }}</td>
+                <td class="price">G.C. {{ ingredient.price_per_unit|stringformat:".2f" }}</td>
+                <td class="restricted">{{ ingredient.restricted }}</td>
+                <td>
+                    <a href="{% url 'delete_ingredient' ingredient.id %}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <p class="restricted">Restricted Codes<br>
+            EX  -  Explosive<br>
+            FA  -  Faerie<br>
+            NC  -  Necromantic<br>
+            TX  -  Toxic
+        </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Magic Potion Shop -- Magic Words{% endblock %}
+
+{% block content %}
+  <div class="login-form">
+    <h2>Say Ye Magic Words</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <button class="submit-button" type="submit">Grant Thou Entry</button>
+    </form>
+  </div>
+  <br>
+  <p>You begin to remember fragments from your dream last night.... A swirling image of a mage wreathed in burning flames and mouthing something you can't quite make out... you lean closer and the mage imparts his vision to you.... You're left with an image in your mind's eye of a colossal statue depicting some forgotten nameless deity and emblazoned upon it's torso the words... 'guesticle' and 'sillypassword123'.  Maybe this is a clue you wonder...</p>
+{% endblock %}
